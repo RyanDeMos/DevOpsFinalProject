@@ -4,7 +4,13 @@ pipeline {
     stages {
         stage('Ryan de Mos - Build Docker Image') {
             steps {
-                echo "working1"
+                docker image pull nginx
+                touch Dockerfile
+                echo "FROM nginx" > Dockerfile
+                echo "RUN apt-get update && apt-get upgrade -y" >> Dockerfile
+                echo "EXPOSE 8081" >> Dockerfile
+                echo "CMD ["nginx", "-g", "daemon off;"]" >> Dockerfile
+                docker build -t simple_nginx .
             }
         }
         stage('Ryan de Mos - Login to Dockerhub') {
