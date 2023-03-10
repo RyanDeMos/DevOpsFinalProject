@@ -1,4 +1,7 @@
-FROM nginx
-RUN apt-get update && apt-get upgrade -y
-EXPOSE 8081
-CMD ["nginx", "-g", "daemon off;"]
+FROM python
+
+RUN mkdir /tmp/pythonFiles
+
+COPY *.py /tmp/pythonFiles/RyandeMos.py
+
+CMD python /tmp/pythonFiles/RyandeMos.py
